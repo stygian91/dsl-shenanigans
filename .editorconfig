@@ -1,4 +1,7 @@
-[root]
+root = true
+
+[*.{js,json}]
 end_of_line = lf
 tab_width = 2
 indent_style = space
+insert_final_newline = true
