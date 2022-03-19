@@ -1,9 +1,9 @@
 /**
  * External dependencies:
  */
-const Parsimmon = require('parsimmon');
+import Parsimmon from 'parsimmon';
 
-module.exports = {
+export default {
   Integer: () => Parsimmon
     .regex(/\d+/)
     .map(Number)

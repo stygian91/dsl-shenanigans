@@ -1,8 +1,13 @@
 /**
  * External dependencies:
  */
-const Parsimmon = require('parsimmon');
+import Parsimmon from 'parsimmon';
 
-module.exports = Parsimmon.createLanguage({
-  ...require('./parsers/number')
+/**
+ * Internal dependencies:
+ */
+import number from './parsers/number.js';
+
+export default Parsimmon.createLanguage({
+  ...number,
 });
