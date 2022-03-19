@@ -2,14 +2,28 @@
   "name": "language",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
-  "type": "module",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "files": [
+    "src",
+    "dist",
+    "es"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:es": "BABEL_ENV=es babel src -d es",
+    "build:cjs": "BABEL_ENV=cjs babel src -d dist",
+    "build": "npm run build:es && npm run build:cjs",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "parsimmon": "^1.18.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "jest": "^27.5.1"
   }
 }

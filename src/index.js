@@ -1,3 +1,6 @@
 import Language from './language.js';
 
-console.log(Language.Number.tryParse('123.12'));
+const program = '12  *10';
+const result = Language.Multiply.tryParse(program);
+
+console.log(result);
