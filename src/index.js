@@ -1,6 +1,3 @@
-import Language from './language.js';
+export * as Interpreter from './interpreters/index.js';
 
-const program = '(31 + (55.1/2))';
-const result = Language.BinaryOperation.tryParse(program);
-
-console.log(result);
+export { default as Language } from "./language.js";
