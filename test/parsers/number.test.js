@@ -1,4 +1,5 @@
 import Language from "../../src/language";
+import { filterOutPosition } from "./utils";
 
 describe("parses numbers", () => {
   test("parses integers", () => {
@@ -29,5 +30,27 @@ describe("parses numbers", () => {
     expect(intResult.name).toEqual('Number')
     expect(intResult.value.name).toEqual('Integer');
     expect(intResult.value.value).toEqual(1012);
+  });
+
+  test("parses negative numbers", () => {
+    const intProgram = '-142';
+    const intResult = Language.Number.tryParse(intProgram);
+    expect(filterOutPosition(intResult)).toEqual({
+      name: 'Number',
+      value: {
+        name: 'Integer',
+        value: -142,
+      },
+    });
+
+    const floatProgram = '-42.314';
+    const floatResult = Language.Number.tryParse(floatProgram);
+    expect(filterOutPosition(floatResult)).toEqual({
+      name: 'Number',
+      value: {
+        name: 'Float',
+        value: -42.314,
+      },
+    });
   });
 });

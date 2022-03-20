@@ -9,12 +9,12 @@ export default {
     .node('OptionalWhitespace'),
 
   Integer: () => Parsimmon
-    .regex(/\d+/)
+    .regex(/-?\d+/)
     .map(Number)
     .node('Integer'),
 
   Float: () => Parsimmon
-    .regex(/\d+\.\d+/)
+    .regex(/-?\d+\.\d+/)
     .map(Number)
     .node('Float'),
 

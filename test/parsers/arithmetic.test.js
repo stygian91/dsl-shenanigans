@@ -42,6 +42,86 @@ describe("parses arithmetic operations", () => {
     expect(filterOutPosition(result)).toEqual(expected);
   });
 
+  test('multiplies negative numbers', () => {
+    const program = '(42.3*-2)';
+    const result = Language.BinaryOperation.tryParse(program);
+
+    const expected = {
+      name: 'BinaryOperation',
+      value: {
+        left: {
+          name: 'Term',
+          value: {
+            name: 'Number',
+            value: {
+              name: 'Float',
+              value: 42.3,
+            },
+          },
+        },
+        operator: {
+          name: 'ArithmeticOperator',
+          value: {
+            name: 'Asterisk',
+            value: '*',
+          },
+        },
+        right: {
+          name: 'Term',
+          value: {
+            name: 'Number',
+            value: {
+              name: 'Integer',
+              value: -2,
+            },
+          },
+        },
+      },
+    };
+
+    expect(filterOutPosition(result)).toEqual(expected);
+  });
+
+  test('subtracts negative numbers', () => {
+    const program = '(-3--2.3)';
+    const result = Language.BinaryOperation.tryParse(program);
+
+    const expected = {
+      name: 'BinaryOperation',
+      value: {
+        left: {
+          name: 'Term',
+          value: {
+            name: 'Number',
+            value: {
+              name: 'Integer',
+              value: -3,
+            },
+          },
+        },
+        operator: {
+          name: 'ArithmeticOperator',
+          value: {
+            name: 'Minus',
+            value: '-',
+          },
+        },
+        right: {
+          name: 'Term',
+          value: {
+            name: 'Number',
+            value: {
+              name: 'Float',
+              value: -2.3,
+            },
+          },
+        },
+      },
+    };
+
+    expect(filterOutPosition(result)).toEqual(expected);
+  });
+
   test('parses nested arithmetic operations', () => {
     const program = '(31 + (55.1 / 2))';
     const result = Language.BinaryOperation.tryParse(program);
