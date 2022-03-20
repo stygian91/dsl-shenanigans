@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "funky-lib": "^7.5.0",
     "parsimmon": "^1.18.1"
   },
   "devDependencies": {
