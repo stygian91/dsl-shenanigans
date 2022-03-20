@@ -22,11 +22,23 @@ export default {
     .string('*')
     .node('Asterisk'),
 
-  LeftParenthesis: Parsimmon
+  Plus: () => Parsimmon
+    .string('+')
+    .node('Plus'),
+
+  Minus: () => Parsimmon
+    .string('-')
+    .node('Minus'),
+
+  Slash: () => Parsimmon
+    .string('/')
+    .node('Slash'),
+
+  LeftParenthesis: () => Parsimmon
     .string('(')
     .node('LeftParenthesis'),
 
-  RightParenthesis: Parsimmon
+  RightParenthesis: () => Parsimmon
     .string(')')
     .node('RightParenthesis'),
 };

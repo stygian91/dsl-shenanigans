@@ -4,13 +4,33 @@
 import Parsimmon from "parsimmon";
 
 export default {
-  Multiply: (r) => Parsimmon
-    .seqObj(
-      ['left', r.Number],
-      r.OptionalWhitespace,
+  ArithmeticOperator: (r) => Parsimmon
+    .alt(
+      r.Plus,
+      r.Minus,
       r.Asterisk,
-      r.OptionalWhitespace,
-      ['right', r.Number]
+      r.Slash
     )
-    .node('Multiply'),
+    .node('ArithmeticOperator'),
+
+  Term: (r) => Parsimmon
+    .alt(
+      r.BinaryOperation,
+      r.Number,
+    )
+    .node('Term'),
+
+  BinaryOperation: (r) => Parsimmon
+      .seqObj(
+        r.LeftParenthesis,
+        r.OptionalWhitespace,
+        ['left', r.Term],
+        r.OptionalWhitespace,
+        ['operator', r.ArithmeticOperator],
+        r.OptionalWhitespace,
+        ['right', r.Term],
+        r.OptionalWhitespace,
+        r.RightParenthesis,
+      )
+      .node('BinaryOperation'),
 };
