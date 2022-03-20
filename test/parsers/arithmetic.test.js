@@ -1,5 +1,5 @@
 import Language from "../../src/language";
-import { filterOutPosition } from "./utils";
+import { filterOutPosition } from "../utils";
 
 describe("parses arithmetic operations", () => {
   test('adds 2 numbers', () => {
