@@ -2,6 +2,7 @@
  * External dependencies:
  */
 import Parsimmon from "parsimmon";
+import * as F from "funky-lib";
 
 export default {
   Integer: () => Parsimmon

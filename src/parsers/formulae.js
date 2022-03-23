@@ -2,6 +2,7 @@
  * External dependencies:
  */
 import Parsimmon from "parsimmon";
+import * as F from "funky-lib"
 
 const formulae = {
   SumOverRange: (r) => Parsimmon
@@ -12,29 +13,27 @@ const formulae = {
       Parsimmon.optWhitespace,
       Parsimmon.string('where'),
       Parsimmon.optWhitespace,
-      ['variables', r.MultiAssignment],
+      ['variables', r.VariableAssignment],
       Parsimmon.optWhitespace,
       ['range', r.RangeAssignment],
     )
     .node('SumOverRange'),
 
-  MultiAssignment: (r) => r.VariableAssignment
+  VariableAssignment: (r) => Parsimmon
     .sepBy1(
+      Parsimmon.seqObj(
+        ['identifier', r.Identifier.map(F.prop('value'))],
+        Parsimmon.optWhitespace,
+        Parsimmon.string('='),
+        Parsimmon.optWhitespace,
+        ['value', r.Number],
+      ),
+
       Parsimmon.seq(
         Parsimmon.optWhitespace,
         Parsimmon.string(','),
         Parsimmon.optWhitespace,
       )
-    )
-    .node('MultiAssignment'),
-
-  VariableAssignment: (r) => Parsimmon
-    .seqObj(
-      ['identifier', r.Identifier],
-      Parsimmon.optWhitespace,
-      Parsimmon.string('='),
-      Parsimmon.optWhitespace,
-      ['value', r.Number],
     )
     .node('VariableAssignment'),
 
@@ -42,7 +41,11 @@ const formulae = {
     .seqObj(
       Parsimmon.string('for'),
       Parsimmon.optWhitespace,
-      ['from', r.VariableAssignment],
+      ['identifier', r.Identifier.map(F.prop('value'))],
+      Parsimmon.optWhitespace,
+      Parsimmon.string('='),
+      Parsimmon.optWhitespace,
+      ['from', r.Number],
       Parsimmon.optWhitespace,
       Parsimmon.string('to'),
       Parsimmon.optWhitespace,

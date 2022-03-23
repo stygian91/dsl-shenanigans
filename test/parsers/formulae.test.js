@@ -2,63 +2,30 @@ import language from "../../src/language";
 import { filterOutPosition } from "../utils";
 
 describe('Parses formulae', () => {
-  test('parses single variable assignment', () => {
-    const ast = language.VariableAssignment.tryParse('x = 10');
+  test('parses variable assignments', () => {
+    const ast = language.VariableAssignment.tryParse('x = 10, y = 12.3');
+
     const expected = {
       name: 'VariableAssignment',
-      value: {
-        identifier: {
-          name: 'Identifier',
-          value: 'x',
-        },
-        value: {
-          name: 'Number',
-          value: {
-            name: 'Integer',
-            value: 10,
-          },
-        },
-      },
-    };
-
-    expect(filterOutPosition(ast)).toEqual(expected);
-  });
-
-  test('parses multiple variable assignments', () => {
-    const ast = language.MultiAssignment.tryParse('x = 10, y = 12.3');
-    const expected = {
-      name: 'MultiAssignment',
       value: [
         {
-          name: 'VariableAssignment',
+          identifier: 'x',
           value: {
-            identifier: {
-              name: 'Identifier',
-              value: 'x',
-            },
+            name: 'Number',
             value: {
-              name: 'Number',
-              value: {
-                name: 'Integer',
-                value: 10,
-              },
+              name: 'Integer',
+              value: 10,
             },
           },
         },
 
         {
-          name: 'VariableAssignment',
+          identifier: 'y',
           value: {
-            identifier: {
-              name: 'Identifier',
-              value: 'y',
-            },
+            name: 'Number',
             value: {
-              name: 'Number',
-              value: {
-                name: 'Float',
-                value: 12.3,
-              },
+              name: 'Float',
+              value: 12.3,
             },
           },
         },
@@ -70,25 +37,20 @@ describe('Parses formulae', () => {
 
   test('parses range assignments', () => {
     const ast = language.RangeAssignment.tryParse('for n=1 to 100');
+
     const expected = {
       name: 'RangeAssignment',
       value: {
+        identifier: 'n',
+
         from: {
-          name: 'VariableAssignment',
+          name: 'Number',
           value: {
-            identifier: {
-              name: 'Identifier',
-              value: 'n',
-            },
-            value: {
-              name: 'Number',
-              value: {
-                name: 'Integer',
-                value: 1,
-              },
-            },
+            name: 'Integer',
+            value: 1,
           },
         },
+
         to: {
           name: 'Number',
           value: {
@@ -159,22 +121,16 @@ describe('Parses formulae', () => {
           },
         },
         variables: {
-          name: 'MultiAssignment',
+          name: 'VariableAssignment',
           value: [
             {
-              name: 'VariableAssignment',
+              identifier: 'x',
               value: {
-                  identifier: {
-                    name: 'Identifier',
-                    value: 'x'
-                  },
-                  value: {
-                    name: 'Number',
-                    value: {
-                      name: 'Integer',
-                      value: 10,
-                    },
-                  },
+                name: 'Number',
+                value: {
+                  name: 'Integer',
+                  value: 10,
+                },
               },
             }
           ],
@@ -182,22 +138,16 @@ describe('Parses formulae', () => {
         range: {
           name: 'RangeAssignment',
           value: {
+            identifier: 'n',
+
             from: {
-              name: 'VariableAssignment',
+              name: 'Number',
               value: {
-                identifier: {
-                  name: 'Identifier',
-                  value: 'n',
-                },
-                value: {
-                  name: 'Number',
-                  value: {
-                    name: 'Integer',
-                    value: 1,
-                  },
-                },
+                name: 'Integer',
+                value: 1,
               },
             },
+
             to: {
               name: 'Number',
               value: {
