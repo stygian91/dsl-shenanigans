@@ -4,10 +4,6 @@
 import Parsimmon from "parsimmon";
 
 export default {
-  OptionalWhitespace: () => Parsimmon
-    .regex(/\s*/)
-    .node('OptionalWhitespace'),
-
   Integer: () => Parsimmon
     .regex(/-?\d+/)
     .map(Number)
@@ -41,4 +37,8 @@ export default {
   RightParenthesis: () => Parsimmon
     .string(')')
     .node('RightParenthesis'),
+
+  Identifier: () => Parsimmon
+    .regex(/[a-zA-Z][a-zA-Z0-9_]*/)
+    .node('Identifier'),
 };

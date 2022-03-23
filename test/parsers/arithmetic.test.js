@@ -122,6 +122,42 @@ describe("parses arithmetic operations", () => {
     expect(filterOutPosition(result)).toEqual(expected);
   });
 
+  test('parses identifier terms', () => {
+    const program = '(myVar1+321)';
+    const ast = Language.BinaryOperation.tryParse(program);
+    const expected = {
+      name: 'BinaryOperation',
+      value: {
+        left: {
+          name: 'Term',
+          value: {
+            name: 'Identifier',
+            value: 'myVar1',
+          },
+        },
+        operator: {
+          name: 'ArithmeticOperator',
+          value: {
+            name: 'Plus',
+            value: '+',
+          },
+        },
+        right: {
+          name: 'Term',
+          value: {
+            name: 'Number',
+            value: {
+              name: 'Integer',
+              value: 321,
+            },
+          },
+        },
+      },
+    };
+
+    expect(filterOutPosition(ast)).toEqual(expected);
+  });
+
   test('parses nested arithmetic operations', () => {
     const program = '(31 + (55.1 / 2))';
     const result = Language.BinaryOperation.tryParse(program);

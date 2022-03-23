@@ -4,7 +4,15 @@
 import * as F from 'funky-lib';
 
 export const filterOutPosition = (object) => {
-  const result = {};
+  const result = Array.isArray(object) ? [] : {};
+
+  const push = (value, key, obj) => {
+    if(Array.isArray(obj)) {
+      obj.push(value);
+    } else {
+      obj[key] = value;
+    }
+  };
 
   F.forEach((value, key) => {
     if (key === 'start' || key === 'end') {
@@ -12,9 +20,9 @@ export const filterOutPosition = (object) => {
     }
 
     if (typeof value !== 'object') {
-      result[key] = value;
+      push(value, key, result);
     } else {
-      result[key] = filterOutPosition(value);
+      push(filterOutPosition(value), key, result);
     }
   }, object);
 

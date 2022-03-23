@@ -16,6 +16,7 @@ export default {
   Term: (r) => Parsimmon
     .alt(
       r.BinaryOperation,
+      r.Identifier,
       r.Number,
     )
     .node('Term'),
@@ -23,13 +24,13 @@ export default {
   BinaryOperation: (r) => Parsimmon
       .seqObj(
         r.LeftParenthesis,
-        r.OptionalWhitespace,
+        Parsimmon.optWhitespace,
         ['left', r.Term],
-        r.OptionalWhitespace,
+        Parsimmon.optWhitespace,
         ['operator', r.ArithmeticOperator],
-        r.OptionalWhitespace,
+        Parsimmon.optWhitespace,
         ['right', r.Term],
-        r.OptionalWhitespace,
+        Parsimmon.optWhitespace,
         r.RightParenthesis,
       )
       .node('BinaryOperation'),

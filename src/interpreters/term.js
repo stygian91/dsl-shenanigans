@@ -10,6 +10,9 @@ const term = (astNode) => {
     case 'BinaryOperation':
       return binaryOperation(astNode.value);
 
+    case 'Identifier':
+      return astNode;
+
     case 'Number':
       return number(astNode.value);
 
