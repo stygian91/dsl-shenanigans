@@ -3,6 +3,6 @@
  */
 import * as F from 'funky-lib';
 
-const number = F.pathOr(NaN, 'value.value');
+const number = (context, ast) => F.prop('value', ast);
 
 export default number;

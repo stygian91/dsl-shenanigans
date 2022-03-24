@@ -10,8 +10,8 @@ describe('interprets terms', () => {
     const left = ast.value.left;
     const right = ast.value.right;
 
-    expect(term(left)).toEqual(82);
-    expect(term(right)).toEqual(2.5);
+    expect(term({}, left)).toEqual(82);
+    expect(term({}, right)).toEqual(2.5);
   });
 
   test('throws error for unknown terms', () => {
@@ -23,6 +23,6 @@ describe('interprets terms', () => {
       },
     };
 
-    expect(() => term(unknownAst)).toThrow(InterpreterError);
+    expect(() => term({}, unknownAst)).toThrow(InterpreterError);
   });
 });

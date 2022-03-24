@@ -8,7 +8,7 @@ import * as F from 'funky-lib';
  */
 import InterpreterError from './interpreterError';
 
-const arithmeticOperator = (astNode) => {
+const arithmeticOperator = (context, astNode) => {
   switch (astNode.value.name) {
     case 'Plus':
       return F.add;

@@ -10,11 +10,12 @@ describe('interprets arithmetic operators', () => {
     const minusAst = Language.ArithmeticOperator.tryParse('-');
     const asteriskAst = Language.ArithmeticOperator.tryParse('*');
     const slashAst = Language.ArithmeticOperator.tryParse('/');
+    const opWithContext = (ast) => arithmeticOperator({}, ast);
 
-    expect(arithmeticOperator(plusAst)).toEqual(F.add);
-    expect(arithmeticOperator(minusAst)).toEqual(F.subtract);
-    expect(arithmeticOperator(asteriskAst)).toEqual(F.multiply);
-    expect(arithmeticOperator(slashAst)).toEqual(F.divide);
+    expect(opWithContext(plusAst)).toEqual(F.add);
+    expect(opWithContext(minusAst)).toEqual(F.subtract);
+    expect(opWithContext(asteriskAst)).toEqual(F.multiply);
+    expect(opWithContext(slashAst)).toEqual(F.divide);
   });
 
   test('throws error on unknown arithmetic operators', () => {
@@ -26,6 +27,6 @@ describe('interprets arithmetic operators', () => {
       },
     };
 
-    expect(() => arithmeticOperator(unknownAst)).toThrow(InterpreterError);
+    expect(() => arithmeticOperator({}, unknownAst)).toThrow(InterpreterError);
   });
 });

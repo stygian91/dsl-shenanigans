@@ -12,11 +12,9 @@ describe("parses arithmetic operations", () => {
         left: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Integer',
-              value: 42,
-            },
+            base: 'Number',
+            name: 'Integer',
+            value: 42,
           },
         },
         operator: {
@@ -29,11 +27,9 @@ describe("parses arithmetic operations", () => {
         right: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Float',
-              value: 3.14,
-            },
+            base: 'Number',
+            name: 'Float',
+            value: 3.14,
           },
         },
       },
@@ -52,11 +48,9 @@ describe("parses arithmetic operations", () => {
         left: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Float',
-              value: 42.3,
-            },
+            base: 'Number',
+            name: 'Float',
+            value: 42.3,
           },
         },
         operator: {
@@ -69,11 +63,9 @@ describe("parses arithmetic operations", () => {
         right: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Integer',
-              value: -2,
-            },
+            base: 'Number',
+            name: 'Integer',
+            value: -2,
           },
         },
       },
@@ -92,11 +84,9 @@ describe("parses arithmetic operations", () => {
         left: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Integer',
-              value: -3,
-            },
+            base: 'Number',
+            name: 'Integer',
+            value: -3,
           },
         },
         operator: {
@@ -109,11 +99,9 @@ describe("parses arithmetic operations", () => {
         right: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Float',
-              value: -2.3,
-            },
+            base: 'Number',
+            name: 'Float',
+            value: -2.3,
           },
         },
       },
@@ -145,11 +133,9 @@ describe("parses arithmetic operations", () => {
         right: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Integer',
-              value: 321,
-            },
+            base: 'Number',
+            name: 'Integer',
+            value: 321,
           },
         },
       },
@@ -168,11 +154,9 @@ describe("parses arithmetic operations", () => {
         left: {
           name: 'Term',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Integer',
-              value: 31,
-            },
+            base: 'Number',
+            name: 'Integer',
+            value: 31,
           },
         },
         operator: {
@@ -190,11 +174,9 @@ describe("parses arithmetic operations", () => {
               left: {
                 name: 'Term',
                 value: {
-                  name: 'Number',
-                  value: {
-                    name: 'Float',
-                    value: 55.1,
-                  },
+                  base: 'Number',
+                  name: 'Float',
+                  value: 55.1,
                 },
               },
               operator: {
@@ -207,11 +189,9 @@ describe("parses arithmetic operations", () => {
               right: {
                 name: 'Term',
                 value: {
-                  name: 'Number',
-                  value: {
-                    name: 'Integer',
-                    value: 2,
-                  },
+                  base: 'Number',
+                  name: 'Integer',
+                  value: 2,
                 },
               },
             },

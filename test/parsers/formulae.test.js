@@ -11,22 +11,18 @@ describe('Parses formulae', () => {
         {
           identifier: 'x',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Integer',
-              value: 10,
-            },
+            base: 'Number',
+            name: 'Integer',
+            value: 10,
           },
         },
 
         {
           identifier: 'y',
           value: {
-            name: 'Number',
-            value: {
-              name: 'Float',
-              value: 12.3,
-            },
+            base: 'Number',
+            name: 'Float',
+            value: 12.3,
           },
         },
       ],
@@ -44,19 +40,15 @@ describe('Parses formulae', () => {
         identifier: 'n',
 
         from: {
-          name: 'Number',
-          value: {
-            name: 'Integer',
-            value: 1,
-          },
+          base: 'Number',
+          name: 'Integer',
+          value: 1,
         },
 
         to: {
-          name: 'Number',
-          value: {
-            name: 'Integer',
-            value: 100,
-          },
+          base: 'Number',
+          name: 'Integer',
+          value: 100,
         },
       },
     };
@@ -94,11 +86,9 @@ describe('Parses formulae', () => {
                   left: {
                     name: 'Term',
                     value: {
-                      name: 'Number',
-                      value: {
-                        name: 'Integer',
-                        value: 2,
-                      },
+                      base: 'Number',
+                      name: 'Integer',
+                      value: 2,
                     },
                   },
                   operator: {
@@ -126,11 +116,9 @@ describe('Parses formulae', () => {
             {
               identifier: 'x',
               value: {
-                name: 'Number',
-                value: {
-                  name: 'Integer',
-                  value: 10,
-                },
+                base: 'Number',
+                name: 'Integer',
+                value: 10,
               },
             }
           ],
@@ -141,19 +129,15 @@ describe('Parses formulae', () => {
             identifier: 'n',
 
             from: {
-              name: 'Number',
-              value: {
-                name: 'Integer',
-                value: 1,
-              },
+              base: 'Number',
+              name: 'Integer',
+              value: 1,
             },
 
             to: {
-              name: 'Number',
-              value: {
-                name: 'Integer',
-                value: 10,
-              },
+              base: 'Number',
+              name: 'Integer',
+              value: 10,
             },
           },
         },
