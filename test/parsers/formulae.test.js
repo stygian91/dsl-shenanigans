@@ -146,4 +146,95 @@ describe('Parses formulae', () => {
 
     expect(filterOutPosition(ast)).toEqual(expected);
   });
+
+  test('parses products', () => {
+    const ast = language.ProductOverRange.tryParse('product (y * (10 - n)) where y = 3 for n = 1 to 5');
+    const expected = {
+      name: 'ProductOverRange',
+      value: {
+        operation: {
+          name: 'BinaryOperation',
+          value: {
+            left: {
+              name: 'Term',
+              value: {
+                name: 'Identifier',
+                value: 'y',
+              },
+            },
+            operator: {
+              name: 'ArithmeticOperator',
+              value: {
+                name: 'Asterisk',
+                value: '*',
+              },
+            },
+            right: {
+              name: 'Term',
+              value: {
+                name: 'BinaryOperation',
+                value: {
+                  left: {
+                    name: 'Term',
+                    value: {
+                      base: 'Number',
+                      name: 'Integer',
+                      value: 10,
+                    },
+                  },
+                  operator: {
+                    name: 'ArithmeticOperator',
+                    value: {
+                      name: 'Minus',
+                      value: '-',
+                    },
+                  },
+                  right: {
+                    name: 'Term',
+                    value: {
+                      name: 'Identifier',
+                      value: 'n',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        variables: {
+          name: 'VariableAssignment',
+          value: [
+            {
+              identifier: 'y',
+              value: {
+                base: 'Number',
+                name: 'Integer',
+                value: 3,
+              },
+            }
+          ],
+        },
+        range: {
+          name: 'RangeAssignment',
+          value: {
+            identifier: 'n',
+
+            from: {
+              base: 'Number',
+              name: 'Integer',
+              value: 1,
+            },
+
+            to: {
+              base: 'Number',
+              name: 'Integer',
+              value: 5,
+            },
+          },
+        },
+      },
+    };
+
+    expect(filterOutPosition(ast)).toEqual(expected);
+  });
 });

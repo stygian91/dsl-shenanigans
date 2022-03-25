@@ -6,8 +6,17 @@ import * as F from "funky-lib"
 
 const formulae = {
   SumOverRange: (r) => Parsimmon
+    .string('sum')
+    .then(r.OverRange)
+    .node('SumOverRange'),
+
+  ProductOverRange: (r) => Parsimmon
+    .string('product')
+    .then(r.OverRange)
+    .node('ProductOverRange'),
+
+  OverRange: (r) => Parsimmon
     .seqObj(
-      Parsimmon.string('sum'),
       Parsimmon.optWhitespace,
       ['operation', r.BinaryOperation],
       Parsimmon.optWhitespace,
@@ -16,8 +25,7 @@ const formulae = {
       ['variables', r.VariableAssignment],
       Parsimmon.optWhitespace,
       ['range', r.RangeAssignment],
-    )
-    .node('SumOverRange'),
+    ),
 
   VariableAssignment: (r) => Parsimmon
     .sepBy1(
